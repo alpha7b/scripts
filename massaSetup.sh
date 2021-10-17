@@ -1,4 +1,4 @@
-# curl -sL https://raw.githubusercontent.com/alpha7/scripts/main/massaSetup.sh -o massaSetup.sh && sudo bash massaSetup.sh
+# curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/massaSetup.sh -o massaSetup.sh && sudo bash massaSetup.sh
 
 # setup massa testnet node
 # https://gitlab.com/massalabs/massa/-/tree/testnet
