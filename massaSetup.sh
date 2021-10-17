@@ -4,6 +4,7 @@
 # https://gitlab.com/massalabs/massa/-/tree/testnet
 
 cd ~
+rm -rf massa*
 
 sudo apt update
 sudo apt install pkg-config curl git build-essential libssl-dev
