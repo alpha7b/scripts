@@ -3,6 +3,8 @@
 # setup massa testnet node
 # https://gitlab.com/massalabs/massa/-/tree/testnet
 
+cd ~
+
 sudo apt update
 sudo apt install pkg-config curl git build-essential libssl-dev
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
