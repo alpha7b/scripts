@@ -19,19 +19,19 @@ git clone --branch testnet https://gitlab.com/massalabs/massa.git
 cd massa/massa-node/
 
 
-# RUST_BACKTRACE=full cargo run --release |& tee logs.txt
+RUST_BACKTRACE=full cargo run --release |& tee logs.txt
 
-cd massa/massa-node/
-source $HOME/.cargo/env
-nohup cargo run --release &
+# cd massa/massa-node/
+# source $HOME/.cargo/env
+# nohup cargo run --release &
 
-sleep 10m
+# sleep 10m
 
-cd massa/massa-client/
-cargo run
-sleep 10m
+# cd massa/massa-client/
+# cargo run
+# sleep 10m
 
-wallet_info
+# wallet_info
 
 wallet_new_privkey
 wallet_info
