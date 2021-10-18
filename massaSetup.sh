@@ -33,5 +33,5 @@ RUST_BACKTRACE=full cargo run --release |& tee logs.txt
 
 # wallet_info
 
-wallet_new_privkey
-wallet_info
+# wallet_new_privkey
+# wallet_info
