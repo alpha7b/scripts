@@ -23,6 +23,6 @@ git pull # in case you've checked it out before
 # `git checkout tags/v0.12.1` in order to join the testnet.
 
 git checkout tags/v0.12.1
-sleep 1
+sleep 10s
 ls
 cargo build --release
