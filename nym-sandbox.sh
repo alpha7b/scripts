@@ -5,7 +5,7 @@
 
 # Install packages
 sudo apt update
-sudo apt install pkg-config build-essential libssl-dev curl jq
+sudo apt install pkg-config build-essential libssl-dev curl jq -y
 
 # Install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -23,4 +23,6 @@ git pull # in case you've checked it out before
 # `git checkout tags/v0.12.1` in order to join the testnet.
 
 git checkout tags/v0.12.1
+sleep 1
+ls
 cargo build --release
