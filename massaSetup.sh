@@ -15,7 +15,7 @@ rustup toolchain install nightly
 rustup default nightly
 rustc --version
 
-git clone --branch testnet https://gitlab.com/massalabs/massa.git
+git clone --branch testnet https://github.com/massalabs/massa.git
 cd massa/massa-node/
 
 
