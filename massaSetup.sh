@@ -12,7 +12,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 rustc --version
 rustup toolchain install nightly
-rustup default nightly
+rustup default nightly-2021-12-04
 rustc --version
 
 git clone --branch testnet https://github.com/massalabs/massa.git
