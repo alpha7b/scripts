@@ -1,4 +1,4 @@
-# curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/massaUpdate.sh -o massaUpdate.sh && sudo bash massaSetup.sh
+# curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/massaUpdate.sh -o massaUpdate.sh && sudo bash massaUpdate.sh
 
 # Update massa testnet node
 # https://github.com/massalabs/massa/wiki/update
