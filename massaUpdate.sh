@@ -16,6 +16,7 @@ git pull
 sleep 30s
 git pull
 
+cd massa-node
 RUST_BACKTRACE=full cargo run --release |& tee logs.txt
 
 # cd massa/massa-node/
