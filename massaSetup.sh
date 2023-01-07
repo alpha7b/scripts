@@ -13,6 +13,7 @@ screen -ls
 
 
 cd ~/massa
+rm -rf massa_TEST.*
 wget https://github.com/massalabs/massa/releases/download/TEST.18.0/massa_TEST.18.0_release_linux.tar.gz
 tar -xvf massa_TEST.18.0_release_linux.tar.gz
 pwd
@@ -24,5 +25,5 @@ sed -i "/\[network\]/a\    routable_ip = \"$(curl -s ifconfig.me)\"" ~/massa/mas
 cat ~/massa/massa/massa-node/base_config/config.toml
 
 # start node in screen session
-
-screen -dmS "massa" bash -c """echo "let's start massa node in screen session"; pwd; cd ~/massa/massa/massa-node/; pwd;./massa-node -p 123 |& tee logs.txt; bash"""
+screen -dmS "massa" bash -c """echo "let's start massa node in screen session"; pwd; pwd; pwd; bash"""
+# screen -dmS "massa" bash -c """echo "let's start massa node in screen session"; pwd; cd ~/massa/massa/massa-node/; pwd;./massa-node -p 123 |& tee logs.txt; bash"""
