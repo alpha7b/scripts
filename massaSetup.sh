@@ -4,7 +4,13 @@
 # https://docs.massa.net/en/latest/testnet/install.html
 
 # terminate all massa screen session
+echo "Display all screen sessions"
+screen -ls
+echo "Terminate all massa screen sessions"
 screen -S massa* -X quit
+echo "Display all screen sessions"
+screen -ls
+
 
 cd ~/massa
 wget https://github.com/massalabs/massa/releases/download/TEST.18.0/massa_TEST.18.0_release_linux.tar.gz
@@ -19,10 +25,4 @@ cat ~/massa/massa/massa-node/base_config/config.toml
 
 # start node in screen session
 
-screen -dmS "massa" bash -c """
-echo "let's start massa node in screen session"
-pwd
-cd ~/massa/massa/massa-node/
-./massa-node -p 123 |& tee logs.txt
-bash
-"""
+screen -dmS "massa" bash -c """echo "let's start massa node in screen session"; pwd; cd ~/massa/massa/massa-node/; pwd;./massa-node -p 123 |& tee logs.txt; bash"""
