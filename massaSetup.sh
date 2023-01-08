@@ -7,6 +7,8 @@ read -p "Enter Massa Version: " MassaVersion
 echo "Massa Version is:" $MassaVersion
 read -p "Enter Address: " Address
 echo "Address is:" $Address
+read -p "Enter Node password: " passwd
+echo "Node password is:" $passwd
 read -p "Enter SecretKey: " SecretKey
 
 function main(){
@@ -55,35 +57,35 @@ function start_node_in_screen_session(){
         cd ~/massa/massa/massa-node/; 
         pwd; 
         ls;
-        ./massa-node -p 123 |& tee logs.txt;
+        ./massa-node -p $passwd |& tee logs.txt;
         sleep 40s;
         bash
     "
     echo 'Wait 300s till node is started'
     sleep 300s
     cd ~/massa/massa/massa-client/
-    ./massa-client -p 123 get_status
+    ./massa-client -p $passwd get_status
 }
 
 # start staking in client
 function start_staking_in_client(){    
     cd ~/massa/massa/massa-client/
-    NodeStatus=$(./massa-client -p 123 get_status)
+    NodeStatus=$(./massa-client -p $passwd get_status)
     echo "Node status is:" $NodeStatus
-    STATUS=$(./massa-client -p 123 get_status | grep error)
+    STATUS=$(./massa-client -p $passwd get_status | grep error)
     echo "Status is:" $STATUS
     if [ -z "$STATUS" ]; then
         echo 'Node is running, wills start staking'
         screen -dmS "massa_client" bash -c "
-            ./massa-client -p 123 get_status;
-            ./massa-client -p 123 wallet_info;
+            ./massa-client -p $passwd get_status;
+            ./massa-client -p $passwd wallet_info;
             echo 'Address is:' $Address;
             echo '======buy_rolls=======';
-            ./massa-client -p 123 buy_rolls $Address 1 0;
+            ./massa-client -p $passwd buy_rolls $Address 1 0;
             sleep 120s;
-            ./massa-client -p 123 wallet_info;
+            ./massa-client -p $passwd wallet_info;
             echo '======node_add_staking_secret_keys=======';
-            ./massa-client -p 123 node_add_staking_secret_keys $SecretKey;
+            ./massa-client -p $passwd node_add_staking_secret_keys $SecretKey;
             currentUtcTime=$(date);
             echo 'Current UTC Time is:' $currentUtcTime;
             echo 'Staking started, wait 120min to operate in discord'
