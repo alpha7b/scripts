@@ -10,13 +10,13 @@ echo "Address is:" $Address
 read -p "Enter SecretKey: " SecretKey
 
 function main(){
-    terminate_existing_screen_session
+    terminate_existing_massa_screen_session
     install_node
     start_node_in_screen_session
     start_staking_in_client
 }
 # terminate all massa screen session
-function terminate_existing_screen_session(){
+function terminate_existing_massa_screen_session(){
     echo "Display all screen sessions"
     screen -ls
     echo "Terminate all massa screen sessions"
