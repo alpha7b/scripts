@@ -45,7 +45,8 @@ function install_node(){
 }
 
 # start node in screen session
-function start_node_in_screen_session(){    
+function start_node_in_screen_session(){
+    echo 'Start massa node in screen session'
     screen -dmS "massa" bash -c "
     echo 'Start massa node in screen session'; 
     pwd;
@@ -56,7 +57,10 @@ function start_node_in_screen_session(){
     sleep 40s;
     bash
     "
+    echo 'Wait 300s till node is started'
     sleep 300s
+    cd ~/massa/massa/massa-client/
+    ./massa-client -p 123 get_status
 }
 
 # start staking in client
