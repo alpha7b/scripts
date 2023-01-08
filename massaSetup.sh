@@ -77,6 +77,9 @@ function start_staking_in_client(){
     if [ -z "$STATUS" ]; then
         echo 'Node is running, wills start staking'
         screen -dmS "massa_client" bash -c "
+            pwd;
+            cd ~/massa/massa/massa-client/;
+            pwd;
             ./massa-client -p $passwd get_status;
             ./massa-client -p $passwd wallet_info;
             echo 'Address is:' $Address;
@@ -90,7 +93,11 @@ function start_staking_in_client(){
             echo 'Current UTC Time is:' $currentUtcTime;
             echo 'Staking started, wait 120min to operate in discord'
         "
-        echo 'Staking started in screen session massa_client, wait 120min to operate in discord'
+        echo 'Staking started in screen session massa_client, wait 100min to operate in discord'
+        sleep 100m
+        echo '100 minutes passed, show wallet_info again'
+        cd ~/massa/massa/massa-client/
+        ./massa-client -p $passwd wallet_info
         
         else
         echo 'Node is not running, please check in massa screen session massa_node'
