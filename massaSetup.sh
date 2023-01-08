@@ -19,15 +19,16 @@ function main(){
     start_node
     start_staking
 }
+
 # terminate all massa screen session
 function terminate_existing_massa_screen_session(){
-    echo "Display all screen sessions"
+    echo "Display all screen sessions before terminating"
     screen -ls
     echo "Terminate all massa screen sessions"
     screen -S massa -X quit
     screen -S massa_node -X quit
     screen -S massa_client -X quit
-    echo "Display all screen sessions"
+    echo "Display all screen sessions after terminating"
     screen -ls
     sleep 5s
 }
