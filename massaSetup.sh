@@ -21,6 +21,8 @@ function terminate_existing_massa_screen_session(){
     screen -ls
     echo "Terminate all massa screen sessions"
     screen -S massa -X quit
+    screen -S massa_node -X quit
+    screen -S massa_client -X quit
     echo "Display all screen sessions"
     screen -ls
     sleep 5s
@@ -47,15 +49,15 @@ function install_node(){
 # start node in screen session
 function start_node_in_screen_session(){
     echo 'Start massa node in screen session'
-    screen -dmS "massa" bash -c "
-    echo 'Start massa node in screen session'; 
-    pwd;
-    cd ~/massa/massa/massa-node/; 
-    pwd; 
-    ls;
-    ./massa-node -p 123 |& tee logs.txt;
-    sleep 40s;
-    bash
+    screen -dmS "massa_node" bash -c "
+        echo 'Start massa node in screen session'; 
+        pwd;
+        cd ~/massa/massa/massa-node/; 
+        pwd; 
+        ls;
+        ./massa-node -p 123 |& tee logs.txt;
+        sleep 40s;
+        bash
     "
     echo 'Wait 300s till node is started'
     sleep 300s
@@ -70,21 +72,26 @@ function start_staking_in_client(){
     echo "Node status is:" $NodeStatus
     STATUS=$(./massa-client -p 123 get_status | grep error)
     echo "Status is:" $STATUS
-    if [ -z "$STATUS" ]; then 
+    if [ -z "$STATUS" ]; then
         echo 'Node is running, wills start staking'
-        ./massa-client -p 123 get_status
-        ./massa-client -p 123 wallet_info
-        echo "Address is:" $Address
-        ./massa-client -p 123 buy_rolls $Address 1 0
-        sleep 120s
-        ./massa-client -p 123 wallet_info
-        ./massa-client -p 123 node_add_staking_secret_keys $SecretKey
-        currentUtcTime=$(date)
-        echo 'Current UTC Time is:' $currentUtcTime
-        echo 'Staking started, wait 120min to operate in discord'
-
+        screen -dmS "massa_client" bash -c "
+            ./massa-client -p 123 get_status;
+            ./massa-client -p 123 wallet_info;
+            echo 'Address is:' $Address;
+            echo '======buy_rolls=======';
+            ./massa-client -p 123 buy_rolls $Address 1 0;
+            sleep 120s;
+            ./massa-client -p 123 wallet_info;
+            echo '======node_add_staking_secret_keys=======';
+            ./massa-client -p 123 node_add_staking_secret_keys $SecretKey;
+            currentUtcTime=$(date);
+            echo 'Current UTC Time is:' $currentUtcTime;
+            echo 'Staking started, wait 120min to operate in discord'
+        "
+        echo 'Staking started in screen session massa_client, wait 120min to operate in discord'
+        
         else
-        echo 'Node is not running, please check in massa screen session'
+        echo 'Node is not running, please check in massa screen session massa_node'
     fi
 }
 
