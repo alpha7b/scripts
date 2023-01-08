@@ -16,8 +16,8 @@ read -p "Enter SecretKey: " SecretKey
 function main(){
     terminate_existing_massa_screen_session
     install_node
-    start_node_in_screen_session
-    start_staking_in_client
+    start_node
+    start_staking
 }
 # terminate all massa screen session
 function terminate_existing_massa_screen_session(){
@@ -50,8 +50,8 @@ function install_node(){
     sleep 5s
 }
 
-# start node in screen session
-function start_node_in_screen_session(){
+# start node in screen session massa_node
+function start_node(){
     echo 'Start massa node in screen session'
     screen -dmS "massa_node" bash -c "
         echo 'Start massa node in screen session'; 
@@ -69,8 +69,8 @@ function start_node_in_screen_session(){
     ./massa-client -p $passwd get_status
 }
 
-# start staking in client
-function start_staking_in_client(){    
+# start staking in screen session massa_client
+function start_staking(){    
     cd ~/massa/massa/massa-client/
     NodeStatus=$(./massa-client -p $passwd get_status)
     echo "Node status is:" $NodeStatus
