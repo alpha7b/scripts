@@ -1,5 +1,7 @@
 # curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/massaSetup.sh -o massaSetup.sh && sudo bash massaSetup.sh
 # setup massa testnet node
+# massa node will be running in screen session massa_node
+# buy rolls and stake rolls will be operated in screen session massa_client
 # https://docs.massa.net/en/latest/testnet/install.html
 
 # set vars
@@ -74,6 +76,8 @@ function start_staking_in_client(){
     echo "Node status is:" $NodeStatus
     STATUS=$(./massa-client -p $passwd get_status | grep error)
     echo "Status is:" $STATUS
+    
+    # check if STATUS is empty, it indicates node is running.
     if [ -z "$STATUS" ]; then
         echo 'Node is running, wills start staking'
         screen -dmS "massa_client" bash -c "
@@ -91,13 +95,14 @@ function start_staking_in_client(){
             ./massa-client -p $passwd node_add_staking_secret_keys $SecretKey;
             currentUtcTime=$(date);
             echo 'Current UTC Time is:' $currentUtcTime;
-            echo 'Staking started, wait 120min to operate in discord'
+            echo 'Staking started, wait 100min to operate in discord';
+            sleep 100m;
+            echo '100 minutes passed, show wallet_info again';
+            ./massa-client -p $passwd wallet_info;
+            echo 'If active roll is 1, please operate in discord';
+            bash            
         "
         echo 'Staking started in screen session massa_client, wait 100min to operate in discord'
-        sleep 100m
-        echo '100 minutes passed, show wallet_info again'
-        cd ~/massa/massa/massa-client/
-        ./massa-client -p $passwd wallet_info
         
         else
         echo 'Node is not running, please check in massa screen session massa_node'
