@@ -11,7 +11,7 @@ read -p "Enter Address: " Address
 echo "Address is:" $Address
 read -p "Enter Node password: " passwd
 echo "Node password is:" $passwd
-read -p "Enter SecretKey: " SecretKey
+# read -p "Enter SecretKey: " SecretKey
 
 function main(){
     terminate_existing_massa_screen_session
@@ -92,8 +92,8 @@ function start_staking(){
             ./massa-client -p $passwd buy_rolls $Address 1 0;
             sleep 120s;
             ./massa-client -p $passwd wallet_info;
-            echo '======node_add_staking_secret_keys=======';
-            ./massa-client -p $passwd node_add_staking_secret_keys $SecretKey;
+            echo '======node_start_staking=======';
+            ./massa-client -p $passwd node_start_staking $Address;
             echo 'Current UTC Time is:' $(date);
             echo 'Staking started, wait 100min to operate in discord';
             sleep 100m;
