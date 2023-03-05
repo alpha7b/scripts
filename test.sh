@@ -7,8 +7,8 @@
 # # read -p "Enter Address: " Address
 # # echo "Address is:" $Address
 
-# read -p "Enter Node password: " passwd
-# echo "Node password is:" $passwd
+read -p "Enter Node password: " passwd
+echo "Node password is:" $passwd
 
 function main(){
     start_staking
@@ -87,7 +87,7 @@ function start_staking(){
             echo $(./massa-client -p $passwd wallet_info) | awk '{print $10 $11}'
             Address=$(echo $(./massa-client -p $passwd wallet_info) | awk '{print $2}')
             echo 'Address is:' $Address;
-            echo 'Is this address already faucetted y/n ?'
+            echo 'Is this address already faucetted (y/n) ?'
             read answer
             if [ "$answer" = "y" ]; then
                 echo "Continuing..."
