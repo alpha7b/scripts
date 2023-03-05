@@ -18,7 +18,7 @@ function main(){
     terminate_existing_massa_screen_session
     install_node
     start_node
-    start_staking
+#     start_staking
 }
 
 # terminate all massa screen session
