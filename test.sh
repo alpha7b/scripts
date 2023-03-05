@@ -87,7 +87,7 @@ function start_staking(){
             echo $(./massa-client -p $passwd wallet_info) | awk '{print $10 $11}'
             Address=$(echo $(./massa-client -p $passwd wallet_info) | awk '{print $2}')
             echo 'Address is:' $Address;
-            echo "Is this address already faucetted (y/n)?"
+            echo 'Is this address already faucetted (y/n)?'
             read answer
             if [ "$answer" = "y" ]; then
                 echo "Continuing..."
