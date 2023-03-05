@@ -9,7 +9,8 @@ echo "moniker name is:" $moniker
 function main(){
     build_nibiru
     init_chain
-    start_nibiru_service
+#     create_nibiru_service
+#     start_nibiru_service
 }
 
 function build_nibiru(){
@@ -36,25 +37,27 @@ function init_chain(){
     [[ -f $HOME/.nibid/data/upgrade-info.json ]] && cp $HOME/.nibid/data/upgrade-info.json $HOME/.nibid/cosmovisor/genesis/upgrade-info.json
 }
 
-function start_nibiru_service(){
-    sudo tee <<EOF >/dev/null /etc/systemd/system/nibid.service
-    [Unit]
-    Description=nibid daemon
-    After=network-online.target
-    [Service]
-    User=$USER
-    ExecStart=$(which nibid) start
-    Restart=on-failure
-    RestartSec=3
-    LimitNOFILE=10000
-    [Install]
-    WantedBy=multi-user.target
-    EOF
+# function create_nibiru_service(){
+#     sudo tee <<EOF >/dev/null /etc/systemd/system/nibid.service
+#     [Unit]
+#     Description=nibid daemon
+#     After=network-online.target
+#     [Service]
+#     User=$USER
+#     ExecStart=$(which nibid) start
+#     Restart=on-failure
+#     RestartSec=3
+#     LimitNOFILE=10000
+#     [Install]
+#     WantedBy=multi-user.target
+#     EOF
+# }
 
-    sudo systemctl daemon-reload
-    sudo systemctl enable nibid
-    sudo systemctl start nibid
-    journalctl -u nibid -f --no-hostname -o cat
-}
+# function start_nibiru_service(){
+#     sudo systemctl daemon-reload
+#     sudo systemctl enable nibid
+#     sudo systemctl start nibid
+#     journalctl -u nibid -f --no-hostname -o cat
+# }
 
 main "$@"
