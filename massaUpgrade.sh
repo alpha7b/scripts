@@ -1,4 +1,4 @@
-# curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/massaSetup.sh -o massaSetup.sh && sudo bash massaSetup.sh
+# curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/massaUpgrade.sh -o massaUpgrade.sh && sudo bash massaUpgrade.sh
 # setup massa testnet node
 # massa node will be running in screen session massa_node
 # buy rolls and stake rolls will be operated in screen session massa_client
