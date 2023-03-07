@@ -1,3 +1,4 @@
+echo $key
 FAUCET_URL="https://faucet.itn-1.nibiru.fi/"
 ADDR=$(echo $key | nibid keys show wallet -a)
 echo $key
