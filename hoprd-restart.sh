@@ -5,8 +5,8 @@ function main(){
     start_hoprd
 }
 
-# terminate all massa screen session
-function terminate_existing_massa_screen_session(){
+# terminate hoprd screen session
+function terminate_existing_hoprd_screen_session(){
     echo "Display all screen sessions before terminating"
     screen -ls
     echo "Terminate hoprd screen sessions"
