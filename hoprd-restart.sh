@@ -33,8 +33,9 @@ function start_hoprd(){
 }
 # remove old docker container
 function remove_old_hoprd_container(){
-    docker ps -a;
+    docker ps -a
     docker rm $(docker ps -a -q --filter ancestor=gcr.io/hoprassociation/hoprd:1.92.9 --filter status=exited)
-    docker ps -a;
+    docker ps -a
 }
+
 main "$@"
