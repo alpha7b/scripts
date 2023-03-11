@@ -5,7 +5,7 @@ function terminate_existing_hoprd_screen_session(){
     echo "Display all screen sessions before terminating"
     screen -ls
     echo "Terminate hoprd screen sessions"
-    screen -S hoprd -X quit
+    screen -ls | awk '/hoprd/ {print $1}' | awk -F. '{print $1}' | xargs -I{} screen -X -S {} quit
     echo "Display all screen sessions after terminating"
     screen -ls
     sleep 5s
