@@ -1,10 +1,5 @@
 # curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/hoprd-restart.sh -o hoprd-restart.sh && sudo bash hoprd-restart.sh
 
-function main(){
-    terminate_existing_hoprd_screen_session
-    start_hoprd
-}
-
 # terminate hoprd screen session
 function terminate_existing_hoprd_screen_session(){
     echo "Display all screen sessions before terminating"
@@ -37,5 +32,12 @@ function remove_old_hoprd_container(){
     docker rm $(docker ps -a -q --filter ancestor=gcr.io/hoprassociation/hoprd:1.92.9 --filter status=exited)
     docker ps -a
 }
+
+
+function main(){
+    terminate_existing_hoprd_screen_session
+    start_hoprd
+}
+
 
 main "$@"
