@@ -30,6 +30,7 @@ function start_hoprd(){
         sleep 40s;
         bash
     "
+}
 # remove old docker container
 function remove_old_hoprd_container(){
     docker ps -a;
