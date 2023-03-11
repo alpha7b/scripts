@@ -37,6 +37,7 @@ function remove_old_hoprd_container(){
 function main(){
     terminate_existing_hoprd_screen_session
     start_hoprd
+    remove_old_hoprd_container
 }
 
 
