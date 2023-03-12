@@ -20,14 +20,14 @@ function terminate_existing_hoprd_screen_session(){
 # stop running hoprd container
 function stop_running_hoprd_container(){
     echo "Display all hoprd containers"
-    docker ps -a -q --filter ancestor=gcr.io/hoprassociation/hoprd:1.92.9
+    docker ps -a --filter ancestor=$hoprImage
     echo "stop running hoprd container"
-    docker stop $(docker ps -a -q --filter ancestor=gcr.io/hoprassociation/hoprd:1.92.9 --filter status=running)
+    docker stop $(docker ps -a -q --filter ancestor=$hoprImage --filter status=running)
     sleep 20s
     echo "remove exited hoprd container"
-    docker rm $(docker ps -a -q --filter ancestor=gcr.io/hoprassociation/hoprd:1.92.9 --filter status=exited)
+    docker rm $(docker ps -a -q --filter ancestor=$hoprImage --filter status=exited)
     echo "Display all hoprd containers"
-    docker ps -a -q --filter ancestor=gcr.io/hoprassociation/hoprd:1.92.9
+    docker ps -a --filter ancestor=$hoprImage
     sleep 5s
 }
 
