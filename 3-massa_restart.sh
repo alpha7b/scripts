@@ -10,27 +10,7 @@
 # echo "Node password is:" $passwd
 
 function main(){
-    start_node
     start_staking
-}
-
-# start node in screen session massa_node
-function start_node(){
-    echo 'Start massa node in screen session'
-    screen -dmS "massa_node" bash -c "
-        echo 'Start massa node in screen session'; 
-        pwd;
-        cd ~/massa/massa/massa-node/; 
-        pwd; 
-        ls;
-        ./massa-node -p $passwd |& tee logs.txt;
-        sleep 40s;
-        bash
-    "
-    echo 'Wait 600s till node is started'
-    sleep 600s
-    cd ~/massa/massa/massa-client/
-    ./massa-client -p $passwd get_status
 }
 
 # start staking in screen session massa_client
