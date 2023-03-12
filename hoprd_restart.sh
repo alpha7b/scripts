@@ -13,6 +13,8 @@ function terminate_existing_hoprd_screen_session(){
 
 # start hoprd in screen session
 function start_hoprd(){
+    cd ~
+    mkdir -p hopr
     cd ~/hopr
     echo 'Start hoprd node in screen session'
     screen -dmS "hoprd" bash -c "
@@ -36,6 +38,7 @@ function remove_old_hoprd_container(){
 
 
 function main(){
+    echo 'Current host is $(curl ifconfig.me)'
     terminate_existing_hoprd_screen_session
     start_hoprd
     remove_old_hoprd_container
