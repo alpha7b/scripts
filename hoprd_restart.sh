@@ -1,5 +1,7 @@
 # curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/hoprd_restart.sh -o hoprd_restart.sh && sudo bash hopr_restart.sh $apiToken
 
+echo $(curl ifconfig.me)
+
 # terminate hoprd screen session
 function terminate_existing_hoprd_screen_session(){
     echo "Display all screen sessions before terminating"
@@ -38,7 +40,7 @@ function remove_old_hoprd_container(){
 
 
 function main(){
-    echo "Current host is: $(curl ifconfig.me)"
+    echo $(curl ifconfig.me)
     terminate_existing_hoprd_screen_session
     start_hoprd
     remove_old_hoprd_container
