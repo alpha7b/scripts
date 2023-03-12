@@ -45,6 +45,7 @@ function start_hoprd(){
 }
 # wait for the old container to be existed and remove old container
 function remove_old_hoprd_container(){
+    echo 'Remove old existed hoprd container'
     sleep 30s
     docker ps -a
     docker rm $(docker ps -a -q --filter ancestor=gcr.io/hoprassociation/hoprd:1.92.9 --filter status=exited)
