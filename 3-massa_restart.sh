@@ -55,13 +55,9 @@ function start_staking(){
             ./massa-client -p $passwd wallet_info;
             echo '======node_start_staking=======';
             ./massa-client -p $passwd node_start_staking $Address;
-            echo 'Current UTC Time is:' $(date);
-            echo 'Staking started, wait 100min to operate in discord';
-            sleep 100m;
-            echo 'Current UTC Time is:' $(date);
-            echo '100 minutes passed, show wallet_info again';
             ./massa-client -p $passwd wallet_info;
-            echo 'If active roll is 1, please operate in discord';
+            echo 'Current UTC Time is:' $(date);
+            echo 'Staking started, wait 100min to be active';
             bash            
         "
         echo 'Staking started in screen session massa_client'
