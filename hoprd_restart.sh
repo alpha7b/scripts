@@ -52,9 +52,8 @@ function remove_old_hoprd_container(){
 }
 
 function main(){
-    echo "Current host IP address is:"
-    echo $(curl ifconfig.me)
     terminate_existing_hoprd_screen_session
+    stop_running_hoprd_container
     start_hoprd
     remove_old_hoprd_container
 }
