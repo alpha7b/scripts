@@ -1,10 +1,9 @@
 # curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/hoprd_restart.sh -o hoprd_restart.sh && sudo bash hopr_restart.sh $apiToken
 
 export ipAddr=$(curl ifconfig.me)
-echo "ipAddr is: "
-echo $ipAddr
+echo "ipAddr is: "$ipAddr
 export hoprdImage="gcr.io/hoprassociation/hoprd:1.92.9"
-echo $hoprdImage
+echo "hoprdImage is: "$hoprdImage
 
 # terminate hoprd screen session
 function terminate_existing_hoprd_screen_session(){
