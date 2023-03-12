@@ -80,7 +80,7 @@ function start_staking(){
     
     # check if STATUS is empty, it indicates node is running.
     if [ -z "$STATUS" ]; then
-        echo 'Node is running, wills start staking'
+        echo 'Node is running, will start staking'
         screen -dmS "massa_client" bash -c "
             pwd;
             cd ~/massa/massa/massa-client/;
@@ -104,6 +104,7 @@ function start_staking(){
             bash            
         "
         echo 'Staking started in screen session massa_client, wait 100min to operate in discord'
+        echo 'Current UTC Time is:' $(date)
         
         else
         echo 'Node is not running, please check in massa screen session massa_node'
