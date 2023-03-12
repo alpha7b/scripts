@@ -3,6 +3,8 @@
 export ipAddr=$(curl ifconfig.me)
 echo "ipAddr is: "
 echo $ipAddr
+export hoprImage="gcr.io/hoprassociation/hoprd:1.92.9"
+echo $hoprImage
 
 # terminate hoprd screen session
 function terminate_existing_hoprd_screen_session(){
