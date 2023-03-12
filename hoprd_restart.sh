@@ -1,6 +1,8 @@
 # curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/hoprd_restart.sh -o hoprd_restart.sh && sudo bash hopr_restart.sh $apiToken
 
-echo $(curl ifconfig.me)
+export ipAddr=$(curl ifconfig.me)
+echo "ipAddr is: "
+echo $ipAddr
 
 # terminate hoprd screen session
 function terminate_existing_hoprd_screen_session(){
@@ -10,6 +12,17 @@ function terminate_existing_hoprd_screen_session(){
     screen -ls | awk '/hoprd/ {print $1}' | awk -F. '{print $1}' | xargs -I{} screen -X -S {} quit
     echo "Display all screen sessions after terminating"
     screen -ls
+    sleep 5s
+}
+
+# stop running hoprd container
+function stop_running_hoprd_container(){
+    echo "Display all hoprd containers"
+    docker ps -a -q --filter ancestor=gcr.io/hoprassociation/hoprd:1.92.9
+    echo "stop running hoprd container"
+    docker rm $(docker ps -a -q --filter ancestor=gcr.io/hoprassociation/hoprd:1.92.9 --filter status=running)
+    echo "Display all hoprd containers"
+    docker ps -a -q --filter ancestor=gcr.io/hoprassociation/hoprd:1.92.9
     sleep 5s
 }
 
@@ -38,8 +51,8 @@ function remove_old_hoprd_container(){
     docker ps -a
 }
 
-
 function main(){
+    echo "Current host IP address is:"
     echo $(curl ifconfig.me)
     terminate_existing_hoprd_screen_session
     start_hoprd
