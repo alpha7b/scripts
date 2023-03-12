@@ -64,8 +64,8 @@ function start_node(){
         sleep 40s;
         bash
     "
-    echo 'Wait 300s till node is started'
-    sleep 300s
+    echo 'Wait 600s till node is started'
+    sleep 600s
     cd ~/massa/massa/massa-client/
     ./massa-client -p $passwd get_status
 }
