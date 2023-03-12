@@ -1,4 +1,4 @@
-# curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/hoprd-restart.sh -o hoprd-restart.sh && sudo bash hoprd-restart.sh $apiToken
+# curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/hoprd_restart.sh -o hoprd_restart.sh && sudo bash hopr_restart.sh $apiToken
 
 # terminate hoprd screen session
 function terminate_existing_hoprd_screen_session(){
