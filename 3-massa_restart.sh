@@ -28,14 +28,19 @@ function start_staking(){
 #         while [ ! -z "$STATUS" ]
 #         do
        # code to be executed repeatedly as long as the condition is true
-       echo 'Node is not running, will start node and re-staking'
-       screen -S massa_node -X stuff "./massa-node -p $passwd |& tee logs.txt\n"
-       sleep 300s
-       cd ~/massa/massa/massa-client/
-       NodeStatus=$(./massa-client -p $passwd get_status)
-       echo "Node status is:" $NodeStatus
-       STATUS=$(./massa-client -p $passwd get_status | grep error)
-       echo "Status is:" $STATUS
+		echo 'Node is not running, will start node and re-staking'
+		screen -S massa_node -X stuff "./massa-node -p $passwd |& tee logs.txt\n"
+
+		echo "Sleep 300s to wait for node starting"
+		sleep 100s
+
+		# check node status again
+		echo "Check node status again"
+		cd ~/massa/massa/massa-client/
+		NodeStatus=$(./massa-client -p $passwd get_status)
+		echo "Node status is:" $NodeStatus
+		STATUS=$(./massa-client -p $passwd get_status | grep error)
+		echo "Status is:" $STATUS
 #         done
         
         echo 'node is running, will re-stake'
