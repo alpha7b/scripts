@@ -31,8 +31,8 @@ function start_staking(){
 		echo 'Node is not running, will start node and re-staking'
 		screen -S massa_node -X stuff "./massa-node -p $passwd |& tee logs.txt\n"
 
-		echo "Sleep 300s to wait for node starting"
-		sleep 300s
+		echo "Sleep 180s to wait for node starting"
+		sleep 180s
 
 		# check node status again
 		echo "Check node status again"
