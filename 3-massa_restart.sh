@@ -27,7 +27,11 @@ function start_staking(){
     count=0
     while [[ $count -lt 5 && -n "$STATUS" ]]; do
         echo 'Node is not running, will start node and re-staking'
-        screen -S massa_node -X stuff "./massa-node -p $passwd |& tee logs.txt\n"
+        screen -S massa_node -X quit
+        sleep 5s
+        cd ~/massa/massa/massa-node/
+        screen -dmS "massa_node" bash -c "./massa-node -p $passwd |& tee logs.txt; bash"
+#         screen -S massa_node -X stuff "./massa-node -p $passwd |& tee logs.txt\n"
 
         echo "Sleep 240s to wait for node starting"
         sleep 240s
