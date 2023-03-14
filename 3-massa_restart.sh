@@ -25,7 +25,7 @@ function start_staking(){
     # check if STATUS is empty, it indicates node is running.
     # start node if it's not running, try 5 times at most.
     count=0
-    while [[ $count -lt 5 && -n "$STATUS" ]]; do
+    while [[ $count -lt 4 && -n "$STATUS" ]]; do
         echo 'Node is not running, will start node and re-staking'
         screen -S massa_node -X quit
         sleep 5s
