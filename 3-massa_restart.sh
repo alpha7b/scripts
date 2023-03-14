@@ -21,27 +21,27 @@ function start_staking(){
     STATUS=$(./massa-client -p $passwd get_status | grep error)
     echo "Status is:" $STATUS
     
-    # check if STATUS is empty, it indicates node is running.
     
-    if [ ! -z "$STATUS" ]; then
-        echo 'Node is not running, will start node'
-        while [ ! -z "$STATUS" ]
-        do
-            echo 'Node is not running, will start node and re-staking'
-            screen -S massa_node -X stuff "./massa-node -p $passwd |& tee logs.txt\n"
+    # check if STATUS is empty, it indicates node is running.
+    # start node if it's not running, try 5 times at most.
+    count=0
+    while [[ $count -lt 5 && -n "$STATUS" ]]; do
+        echo 'Node is not running, will start node and re-staking'
+        screen -S massa_node -X stuff "./massa-node -p $passwd |& tee logs.txt\n"
 
-            echo "Sleep 180s to wait for node starting"
-            sleep 180s
+        echo "Sleep 180s to wait for node starting"
+        sleep 180s
 
-            # check node status again
-            echo "Check node status again"
-            cd ~/massa/massa/massa-client/
-            NodeStatus=$(./massa-client -p $passwd get_status)
-            echo "Node status is:" $NodeStatus
-            STATUS=$(./massa-client -p $passwd get_status | grep error)
-            echo "Status is:" $STATUS
-        done
-        
+        # check node status again
+        echo "Check node status again"
+        cd ~/massa/massa/massa-client/
+        NodeStatus=$(./massa-client -p $passwd get_status)
+        echo "Node status is:" $NodeStatus
+        STATUS=$(./massa-client -p $passwd get_status | grep error)
+        echo "Status is:" $STATUS
+
+      if [[ -z "$STATUS" ]]; then
+
         echo 'node is running, will re-stake'
         screen -S massa_client -X quit
         sleep 5s
@@ -66,11 +66,15 @@ function start_staking(){
         "
         echo 'Staking started in screen session massa_client'
         echo 'Current UTC Time is:' $(date)
+        break
         
         else
-        echo 'Node is still running, do nothing'
-        
-    fi
+        echo 'Node is still running, try to start node again'
+      fi
+
+      ((count++))
+    done
+
 }
 
 main "$@"
