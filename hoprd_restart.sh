@@ -2,7 +2,7 @@
 
 export ipAddr=$(curl ifconfig.me)
 echo "ipAddr is: "$ipAddr
-export hoprdImage="gcr.io/hoprassociation/hoprd:1.92.9"
+export hoprdImage="gcr.io/hoprassociation/hoprd:1.92.12"
 echo "hoprdImage is: "$hoprdImage
 
 # terminate hoprd screen session
