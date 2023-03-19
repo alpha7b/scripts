@@ -3,7 +3,13 @@
 
 ### 查当前目录下的文件及文件夹的大小
 ```
-du -h --max-depth=1
+du -h --max-depth=1  | sort -hr
+du -sh *
+```
+
+### 查指定目录下的文件及文件夹的大小
+```
+du -h --max-depth=1 /<path> | sort -hr
 du -sh *
 ```
 
