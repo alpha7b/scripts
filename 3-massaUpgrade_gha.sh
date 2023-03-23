@@ -64,8 +64,8 @@ function start_node(){
         sleep 40s;
         bash
     "
-    echo 'Wait 600s till node is started'
-    sleep 600s
+    echo 'Wait 240s till node is started'
+    sleep 240s
     cd ~/massa/massa/massa-client/
     ./massa-client -p $passwd get_status
 }
@@ -96,11 +96,6 @@ function start_staking(){
             ./massa-client -p $passwd node_start_staking $Address;
             echo 'Current UTC Time is:' $(date);
             echo 'Staking started, wait 100min to operate in discord';
-            sleep 100m;
-            echo 'Current UTC Time is:' $(date);
-            echo '100 minutes passed, show wallet_info again';
-            ./massa-client -p $passwd wallet_info;
-            echo 'If active roll is 1, please operate in discord';
             bash            
         "
         echo 'Staking started in screen session massa_client, wait 100min to operate in discord'
@@ -112,3 +107,9 @@ function start_staking(){
 }
 
 main "$@"
+
+#             sleep 100m;
+#             echo 'Current UTC Time is:' $(date);
+#             echo '100 minutes passed, show wallet_info again';
+#             ./massa-client -p $passwd wallet_info;
+#             echo 'If active roll is 1, please operate in discord';
