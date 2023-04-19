@@ -21,6 +21,7 @@ function stop_running_hoprd_container(){
     echo "Display all hoprd containers"
     docker ps -a --filter ancestor=$hoprImage
     echo "stop running hoprd container"
+    docker kill $(docker ps -a -q --filter ancestor=$hoprdImage --filter status=running)
     docker stop $(docker ps -a -q --filter ancestor=$hoprdImage --filter status=running)
     sleep 20s
     echo "remove exited hoprd container"
