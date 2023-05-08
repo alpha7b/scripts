@@ -6,6 +6,8 @@ export hoprdImage="gcr.io/hoprassociation/hoprd:1.92.12"
 # terminate old screen and container
 screen -ls | awk '/hoprd/ {print $1}' | awk -F. '{print $1}' | xargs -I{} screen -X -S {} quit
 screen -ls
+screen -wipe
+sleep 3s
 docker kill $(docker ps -a -q --filter ancestor=$hoprdImage)
 sleep 10s
 docker rm $(docker ps -a -q --filter ancestor=$hoprdImage)
