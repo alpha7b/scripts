@@ -21,7 +21,7 @@ screen -dmS "hoprd" bash -c "
     cd cd ~/hopr; 
     pwd; 
     ls;
-    docker run --pull always --restart on-failure \
+    docker run --pull always --restart always \
     -m 2g --log-driver json-file \
     --log-opt max-size=100M --log-opt max-file=5 -ti \
     -v $HOME/.hoprd-db-monte-rosa:/app/hoprd-db \
