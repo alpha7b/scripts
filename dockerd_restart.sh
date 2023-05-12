@@ -5,4 +5,5 @@
 ps axf | grep docker | grep -v grep | awk '{print "kill -9 " $1}' | sudo sh
 
 # 启动docker服务
-/usr/bin/dockerd -H unix://
+/usr/bin/dockerd -H unix:// > /dev/null 2>&1 &
+
