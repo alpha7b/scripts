@@ -1,7 +1,7 @@
 # export apiToken="<apiToken>" && mkdir -p ~/hopr && curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/hoprd_restart_cron.sh -o ~/hopr/hoprd_restart_cron.sh && chmod +x ~/hopr/hoprd_restart_cron.sh && sudo bash ~/hopr/hoprd_restart_cron.sh $apiToken
 #!/bin/bash
 export apiToken=$1
-export hoprdImage="gcr.io/hoprassociation/hoprd:1.92.12"
+export hoprdImage="gcr.io/hoprassociation/hoprd:1.93.5"
 
 # terminate old screen and container
 screen -ls | awk '/hoprd/ {print $1}' | awk -F. '{print $1}' | xargs -I{} screen -X -S {} quit
