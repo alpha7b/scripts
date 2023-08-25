@@ -1,4 +1,5 @@
-# export apiToken="<apiToken>" && mkdir -p ~/hopr && curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/hoprd_restart_cron.sh -o ~/hopr/hoprd_restart_cron.sh && chmod +x ~/hopr/hoprd_restart_cron.sh && sudo bash ~/hopr/hoprd_restart_cron.sh $apiToken
+# crontab job
+# 30 1-23/2 * * * export apiToken="<apiToken>" && mkdir -p ~/hopr && curl -sL https://raw.githubusercontent.com/alpha7b/scripts/main/hoprd_restart_cron.sh -o ~/hopr/hoprd_restart_cron.sh && chmod +x ~/hopr/hoprd_restart_cron.sh && sudo bash ~/hopr/hoprd_restart_cron.sh $apiToken
 #!/bin/bash
 export apiToken=$1
 export hoprdImage="gcr.io/hoprassociation/hoprd:1.93.5"
