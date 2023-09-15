@@ -33,8 +33,8 @@ function start_staking(){
         screen -dmS "massa_node" bash -c "./massa-node -p $passwd |& tee logs.txt; bash"
 #         screen -S massa_node -X stuff "./massa-node -p $passwd |& tee logs.txt\n"
 
-        echo "Sleep 300s to wait for node starting"
-        sleep 300s
+        echo "Sleep 240s to wait for node starting"
+        sleep 240s
 
         # check node status again
         echo "Check node status again"
