@@ -46,7 +46,7 @@ function install_node(){
     # add these info to ~/massa/massa-node/base_config/config.toml
     # [network]
     # routable_ip = "xxx.xxx.xxx.xxx"
-    sed -i "/\[network\]/a\    routable_ip = \"$(curl -s ifconfig.me)\"" ~/massa/massa/massa-node/base_config/config.toml
+    sed -i "/\[network\]/a\    routable_ip = \"$(curl -s ipinfo.io/ip)\"" ~/massa/massa/massa-node/base_config/config.toml
     cat ~/massa/massa/massa-node/base_config/config.toml
     sleep 5s
 }
