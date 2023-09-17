@@ -59,9 +59,10 @@ function start_staking(){
             echo 'Address is:' $Address;
             echo '======buy_rolls=======';
             ./massa-client -p $passwd buy_rolls $Address 1 0;
-            sleep 120s;
+            sleep 240;
             ./massa-client -p $passwd wallet_info;
             echo '======node_start_staking=======';
+            sleep 240;
             ./massa-client -p $passwd node_start_staking $Address;
             ./massa-client -p $passwd wallet_info;
             echo 'Current UTC Time is:' $(date);
